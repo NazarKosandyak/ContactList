@@ -1,0 +1,44 @@
+
+header{
+    height: 70px;
+    border-bottom: 1px solid #E1E1E1;
+    display: flex;
+    align-items: center;
+}
+.logoBox{
+    display: flex;
+    width: 15%;
+    margin-left: 40px;
+    height: 50px;
+}
+.logoBox a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.logo{
+    height: 30px;
+    width: 30px;
+}
+.logoBox p {
+    font-family: 'Poppins', sans-serif;
+    margin-left: 20px;
+    cursor: default;
+}
+.author{
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+.ityped{
+    width: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 200px;
+}
+.test{
+    font-family: 'Atkinson Hyperlegible', sans-serif;
+}

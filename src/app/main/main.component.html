@@ -1,0 +1,127 @@
+<div class="box">
+    <div class="box__actions">
+            <div class="box__actions__search">
+                <input type="text" [(ngModel)]="getItem" placeholder="Search...">
+                <button (click)="searchItem()"><img src="../../assets/image/loupe.png" alt=""></button>
+            </div>
+            <div class="box__actions__add">
+                <button (click)="newContact()">New contact</button>
+            </div>
+    </div>
+    <div class="box__content" *ngIf="switchSearch">
+        <div class="box__item" *ngFor="let item of actionContacts; index as i">
+            <div class="box__item__info">
+                <img src="../../assets/image/name.png" alt="">
+                <p>{{item.name}}</p>
+                <p>{{item.surname}}</p>
+                <img src="../../assets/image/telephone.png" alt="">
+                <p>{{item.phone}}</p>
+            </div>
+            <div class="box__item__actions">
+                <button (click)="editContact(item,i)"><img src="../../assets/image/edit.png" alt=""></button>
+                <button (click)="deleteContact(i)"><img src="../../assets/image/trash.png" alt=""></button>
+                <button (click)="getInfo(item,i)"><img src="../../assets/image/information.png" alt=""></button>
+            </div>
+        </div>
+    </div>
+    <div class="search__content" *ngIf="!switchSearch">
+        <div class="search__item" *ngFor="let item of filterData; index as i">
+            <div class="search__item__info">
+                <img src="../../assets/image/name.png" alt="">
+                <p>{{item.name}}</p>
+                <p>{{item.surname}}</p>
+                <img src="../../assets/image/telephone.png" alt="">
+                <p>{{item.phone}}</p>
+            </div>
+            <div class="search__item__actions">
+                <button (click)="editContact(item,i)"><img src="../../assets/image/edit.png" alt=""></button>
+                <button (click)="deleteContact(i)"><img src="../../assets/image/trash.png" alt=""></button>
+                <button (click)="getInfo(item,i)"><img src="../../assets/image/information.png" alt=""></button>
+            </div>
+        </div>
+        <button class="getBack" (click)="getBack()"><img src="../../assets/image/log-out.png" alt=""></button>
+    </div>
+</div>
+<div class="newContact" *ngIf="isShow">
+    <div class="close">
+        <h1>New contact</h1>
+        <button (click)="closeNew()"><img src="../../assets/image/close.png" alt=""></button>
+    </div>
+    <div class="fields">
+        <form [formGroup]="ContactForm">
+            <p>Name</p>
+            <input formControlName = 'name' name="name" type="text" placeholder="Enter name..">
+            <p>Surname</p>
+            <input formControlName = 'surname' name="surname" type="text" placeholder="Enter surname..">
+            <p>Phone</p>
+            <input formControlName = 'phone' name="phone" type="text" placeholder="Enter phone..">
+            <p>Date of Birth</p>
+            <input formControlName = 'dataOfBirth' name="dataOfBirth" type="text" placeholder="Enter your date of birth..">
+            <p>Email</p>
+            <input formControlName = 'email' name="email" type="text" placeholder="Enter email..">
+            <p>Address</p>
+            <input formControlName = 'address' name="address" type="text" placeholder="Enter address..">
+            <p>Country</p>
+            <select formControlName = 'country' name="country">
+                <option selected disabled [ngValue]='null'>Виберіть країну</option>
+                <option [ngValue]="'Україна'">Україна</option>
+                <option [ngValue]="'Польща'">Польща</option>
+                <option [ngValue]="'Литва'">Литва</option>
+                <option [ngValue]="'Латвія'">Латвія</option>
+                <option [ngValue]="'Швейцарія'">Швейцарія</option>
+                <option [ngValue]="'Франція'">Франція</option>
+                <option [ngValue]="'Іспанія'">Іспанія</option>
+            </select>
+    </form>
+    </div>
+    <button class="submit" (click)="submitContact()">SUBMIT</button>
+</div>
+<div class="moreInfo" *ngIf="isShowInfo">
+    <div class="closeMore">
+        <h1>Details</h1>
+        <button (click)="closeInfo()"><img src="../../assets/image/close.png" alt=""></button>
+    </div>
+    <div class="textInfo">
+        <p>Name: {{currentContact.name}}</p>
+        <p>Surname: {{currentContact.surname}}</p>
+        <p>Phone: {{currentContact.phone}}</p>
+        <p>Data of Birth: {{currentContact.dataOfBirth}}</p>
+        <p>Email: {{currentContact.email}}</p>
+        <p>Address: {{currentContact.address}}</p>
+        <p>Country: {{currentContact.country}}</p>
+    </div>
+</div>
+<div class="editContact" *ngIf="isShowEdit">
+    <div class="closeEdit">
+        <h1>Edit contact</h1>
+        <button (click)="closeEdit()"><img src="../../assets/image/close.png" alt=""></button>
+    </div>
+    <div class="editFields">
+        <form [formGroup]="editForm">
+            <p>Name</p>
+            <input formControlName = 'name' name="name" type="text" placeholder="Enter name..">
+            <p>Surname</p>
+            <input formControlName = 'surname' name="surname" type="text" placeholder="Enter surname..">
+            <p>Phone</p>
+            <input formControlName = 'phone' name="phone" type="text" placeholder="Enter phone..">
+            <p>Date of Birth</p>
+            <input formControlName = 'dataOfBirth' name="dataOfBirth" type="text" placeholder="Enter your date of birth..">
+            <p>Email</p>
+            <input formControlName = 'email' name="email" type="text" placeholder="Enter email..">
+            <p>Address</p>
+            <input formControlName = 'address' name="address" type="text" placeholder="Enter address..">
+            <p>Country</p>
+            <select formControlName = 'country' name="country">
+                <option selected disabled [ngValue]='null'>Виберіть країну</option>
+                <option [ngValue]="'Україна'">Україна</option>
+                <option [ngValue]="'Польща'">Польща</option>
+                <option [ngValue]="'Литва'">Литва</option>
+                <option [ngValue]="'Латвія'">Латвія</option>
+                <option [ngValue]="'Швейцарія'">Швейцарія</option>
+                <option [ngValue]="'Франція'">Франція</option>
+                <option [ngValue]="'Іспанія'">Іспанія</option>
+            </select>
+    </form>
+    </div>
+    <button class="submit" (click)="saveEdit()">SAVE</button>
+</div>

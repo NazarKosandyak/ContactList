@@ -1,0 +1,292 @@
+.box{
+    width: 50%;
+    height: 60%;
+    margin: 50px auto;
+    font-family: 'Atkinson Hyperlegible', sans-serif;
+}
+.box__actions{
+    display: flex;
+    width: 95%;
+    height: 10%;
+    margin: 0 auto;
+}
+.box__actions__search{
+    display: flex;
+    align-items: center;
+    width: 50%; 
+
+}
+.box__actions__search input {
+    width: 250px;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid grey;
+}
+.box__actions__search button{
+    background: transparent ;
+    cursor: pointer;
+    border: none;
+}
+.box__actions__search button img{
+    height: 30px;
+    width: 30px;
+}
+.box__actions__add{
+    display: flex;
+    justify-content: flex-end;
+    width: 50%;
+}
+.box__actions__add button{
+    height: 30px;
+    color: #fff;
+    cursor: pointer;
+    border: none;
+    padding: 0px 15px 0px 15px ;
+    border-radius: 5px;
+    background: linear-gradient(90deg, #38EE7E 0%, #1FA49B 100%);
+}
+.box__actions__add button:hover{
+    box-shadow: 0px 4px 14px rgba(44, 203, 139, 0.3);
+}
+// box__content
+.box__content{
+    width: 95%;
+    height: 90%;
+    margin: 0 auto;
+    padding-top: 50px;
+    
+}
+.box__item{
+    display: flex;
+    width: 100%;
+    min-height: 50px;
+    border: 1px solid grey;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+.box__item__info{
+    width: 50%;
+    display: flex;
+    align-items: center;
+}
+.box__item__info img{
+    width: 20px;
+    height: 20px;
+    margin-left: 10px;
+}
+.box__item__info p{
+    margin-left: 10px;
+}
+.box__item__actions{
+    display: flex;
+    justify-content: flex-end;
+    width: 50%;
+}
+.box__item__actions button{
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    outline: none;
+}
+.box__item__actions img{
+    height: 25px;
+}
+// newContact
+.newContact{
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%,-30%);
+    width: 500px;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid grey;
+    border-radius: 10px;
+}
+.close{
+    position: relative;
+    font-family: 'Atkinson Hyperlegible', sans-serif;
+}
+.close h1 {
+    font-size: 1.3rem;
+    text-align: center;
+}
+.close button{
+    position: absolute;
+    right: 10px;
+    top: 0px;
+    background-color:transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+.fields{
+    font-family: 'Atkinson Hyperlegible', sans-serif;
+    width: 90%;
+    margin: 0 auto;
+}
+.fields p {
+    margin: 5px 0px 0px 0px ;
+}
+.fields input{
+    box-sizing: border-box;
+    width: 100%;
+    line-height: 20px;
+    border-radius: 4px;
+    border: 1px solid grey;
+    outline: none;
+} 
+.fields select{
+    width: 100%;
+    height: 25px;
+}
+.submit{
+    display: block;
+    width: 100px;
+    margin: 20px auto;
+    font-family: 'Atkinson Hyperlegible', sans-serif;
+    background: linear-gradient(90deg, #38EE7E 0%, #1FA49B 100%);
+    color: #fff;
+    outline: none;
+    border: none;
+    line-height: 30px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: .8rem;
+}
+// moreInfo
+.moreInfo{
+    position: absolute;
+    left: 50%;
+    top: 30%;
+    transform: translate(-50%,-30%);
+    width: 600px;
+    height: 400px;
+    background-color: red;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid grey;
+    border-radius: 10px;
+}
+.closeMore{
+    position: relative;
+    font-family: 'Atkinson Hyperlegible', sans-serif;
+}
+.closeMore h1 {
+    font-size: 1.3rem;
+    text-align: center;
+}
+.closeMore button{
+    position: absolute;
+    right: 10px;
+    top: 0px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+} 
+.textInfo{
+    font-family: 'Atkinson Hyperlegible', sans-serif;
+}
+.textInfo p {
+    margin-bottom: 10px;
+    margin-left: 20px;
+}
+// editContact
+.editContact{
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%,-30%);
+    width: 500px;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid grey;
+    border-radius: 10px;
+}
+.closeEdit{
+    position: relative;
+    font-family: 'Atkinson Hyperlegible', sans-serif;
+}
+.closeEdit h1 {
+    text-align: center;
+    font-style: 1.3rem;
+}
+.closeEdit button{
+    position: absolute;
+    right: 10px;
+    top: 0px;
+    background-color:transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+.editFields{
+    font-family: 'Atkinson Hyperlegible', sans-serif;
+    width: 90%;
+    margin: 0 auto;
+}
+.editFields p{
+    margin: 5px 0px 0px 0px ;
+}
+.editFields input{
+    box-sizing: border-box;
+    width: 100%;
+    line-height: 20px;
+    border-radius: 4px;
+    border: 1px solid grey;
+    outline: none;
+}
+.editFields select{
+    width: 100%;
+    height: 25px;
+}
+// search__content
+.search__content{
+    width: 95%;
+    height: 90%;
+    margin: 0 auto;
+    padding-top: 50px;
+}
+.search__item{
+    display: flex;
+    width: 100%;
+    min-height: 50px;
+    border: 2px solid rgb(0, 255, 85);
+    border-radius: 10px;
+    margin-top: 20px;
+}
+.search__item__info{
+    width: 50%;
+    display: flex;
+    align-items: center;
+}
+.search__item__info img{
+    width: 20px;
+    height: 20px;
+    margin-left: 10px;
+}
+.search__item__info p{
+    margin-left: 10px;
+}
+.search__item__actions{
+    display: flex;
+    justify-content: flex-end;
+    width: 50%;
+}
+.search__item__actions button{
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    outline: none;
+}
+.search__item__actions img{
+    height: 25px;
+}
+.getBack{
+    display: block;
+    background-color:transparent;
+    margin: 20px auto;
+    border: none;
+    cursor: pointer;
+}
+.getBack img{
+    width: 30px;
+}
