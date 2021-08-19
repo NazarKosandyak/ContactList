@@ -24,6 +24,7 @@
             </div>
         </div>
     </div>
+<!--search by string  -->
     <div class="search__content" *ngIf="!switchSearch">
         <div class="search__item" *ngFor="let item of filterData; index as i">
             <div class="search__item__info">
@@ -34,14 +35,21 @@
                 <p>{{item.phone}}</p>
             </div>
             <div class="search__item__actions">
-                <button (click)="editContact(item,i)"><img src="../../assets/image/edit.png" alt=""></button>
-                <button (click)="deleteContact(i)"><img src="../../assets/image/trash.png" alt=""></button>
+                <button (click)="editContactSearch(item,i)"><img src="../../assets/image/edit.png" alt=""></button>
+                <ng-container *ngIf="switchSearch; else elseTemplate">
+                    <button (click)="deleteContact(i)"><img src="../../assets/image/trash.png" alt=""></button>
+                </ng-container>
+                <ng-template #elseTemplate>
+                    <button (click)="deleteDetailsontact(item)"><img src="../../assets/image/trash.png" alt=""></button>
+                </ng-template>
+                
                 <button (click)="getInfo(item,i)"><img src="../../assets/image/information.png" alt=""></button>
             </div>
         </div>
         <button class="getBack" (click)="getBack()"><img src="../../assets/image/log-out.png" alt=""></button>
     </div>
 </div>
+<!-- add contact -->
 <div class="newContact" *ngIf="isShow">
     <div class="close">
         <h1>New contact</h1>
@@ -76,6 +84,7 @@
     </div>
     <button class="submit" (click)="submitContact()">SUBMIT</button>
 </div>
+<!-- detailt about contact -->
 <div class="moreInfo" *ngIf="isShowInfo">
     <div class="closeMore">
         <h1>Details</h1>
@@ -91,6 +100,7 @@
         <p>Country: {{currentContact.country}}</p>
     </div>
 </div>
+<!-- edit main -->
 <div class="editContact" *ngIf="isShowEdit">
     <div class="closeEdit">
         <h1>Edit contact</h1>
@@ -123,5 +133,11 @@
             </select>
     </form>
     </div>
-    <button class="submit" (click)="saveEdit()">SAVE</button>
+    <ng-container *ngIf="switchSearch; else elseTemplate">
+        <button class="submit" (click)="saveEdit()">SAVE</button>
+    </ng-container>
+    <ng-template #elseTemplate>
+        <button class="submit" (click)="saveDetailtEdit()">SAVE</button>
+    </ng-template>
+    
 </div>
