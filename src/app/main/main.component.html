@@ -35,7 +35,7 @@
                 <p>{{item.phone}}</p>
             </div>
             <div class="search__item__actions">
-                <button (click)="editContactSearch(item,i)"><img src="../../assets/image/edit.png" alt=""></button>
+                <button (click)="editContactSearch(item)"><img src="../../assets/image/edit.png" alt=""></button>
                 <ng-container *ngIf="switchSearch; else elseTemplate">
                     <button (click)="deleteContact(i)"><img src="../../assets/image/trash.png" alt=""></button>
                 </ng-container>
@@ -64,7 +64,7 @@
             <p>Phone</p>
             <input formControlName = 'phone' name="phone" type="text" placeholder="Enter phone..">
             <p>Date of Birth</p>
-            <input formControlName = 'dataOfBirth' name="dataOfBirth" type="text" placeholder="Enter your date of birth..">
+            <input formControlName = 'dateOfBirth' name="dateOfBirth" type="text" placeholder="XX.XX.XX">
             <p>Email</p>
             <input formControlName = 'email' name="email" type="text" placeholder="Enter email..">
             <p>Address</p>
@@ -115,7 +115,7 @@
             <p>Phone</p>
             <input formControlName = 'phone' name="phone" type="text" placeholder="Enter phone..">
             <p>Date of Birth</p>
-            <input formControlName = 'dataOfBirth' name="dataOfBirth" type="text" placeholder="Enter your date of birth..">
+            <input formControlName = 'dateOfBirth' name="dateOfBirth" type="text" placeholder="XX.XX.XX">
             <p>Email</p>
             <input formControlName = 'email' name="email" type="text" placeholder="Enter email..">
             <p>Address</p>

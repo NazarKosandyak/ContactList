@@ -1,9 +1,8 @@
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { IContact } from '../interfaces/user.interface';
-
-
 
 @Component({
   selector: 'app-main',
@@ -22,8 +21,14 @@ export class MainComponent implements OnInit {
   index: number;
   seacrhIndex: Array<number>;
   infoIndex: number
-  getItem: string;
+  getItem: string = '';
   filterData: Array<IContact> = []
+  RegexForName = /^[a-zA-Z ,.'-]+$/
+  RegexForSurName = /^[a-zA-Z ,.'-]+$/
+  RegexForPhone = /^[0-9]{2,}.?\s?[0-9]{2,}.?\s?[0-9]{2,}\s?$/
+  RegexForDateOfBirth = /^[0-9]{2}-*\.*[0-9]{2}-*\.*[0-9]{2,4}$/
+  RegexForEmail = /^\w{3,}@[a-zA-Z]{3,}\.{1}[a-z]{2,10}$/
+  RegexForAddress = /^[a-zA-Z]{3,}\s*[0-9]*\s*$/
   constructor(
     private FormBuilder: FormBuilder,
     private toastr: ToastrService
@@ -44,15 +49,16 @@ export class MainComponent implements OnInit {
     this.actionContacts = JSON.parse(localStorage.getItem('contacts'))
     localStorage.setItem('contacts', JSON.stringify(this.actionContacts))
 
+
   }
   initContactForm(): void {
     this.ContactForm = this.FormBuilder.group({
-      name: [null, Validators.pattern(/[^0-9@.\/><*{\[\]?^+]+/)],
-      surname: [null, Validators.pattern(/[^0-9@.\/><*{\[\]?^+]+/)],
-      phone: [null, Validators.pattern(/[^a-zA-Z@.\/><*{\[\]?^+]+/)],
-      dataOfBirth: [null, Validators.pattern(/[^a-zA-Z\/><*{\[\]?^+]+/)],
-      email: [null, Validators.pattern(/[a-zA-Z0-9\.]{4,}@\w{3,}.\w{3,}/)],
-      address: [null, Validators.pattern(/[^0-9@.\/><*{\[\]?^+]+/)],
+      name: [null, Validators.required],
+      surname: [null, Validators.required],
+      phone: [null, Validators.required],
+      dateOfBirth: [null, Validators.required],
+      email: [null, Validators.required],
+      address: [null, Validators.required],
       country: [null, Validators.required]
     })
   }
@@ -63,12 +69,18 @@ export class MainComponent implements OnInit {
     this.isShow = false
   }
   submitContact(): void {
-    if (this.ContactForm.value.name != '' && this.ContactForm.value.surname != '' && this.ContactForm.value.phone != '' && this.ContactForm.value.dataOfBirth != '' && this.ContactForm.value.email != '' && this.ContactForm.value.address != '' && this.ContactForm.value.country != null) {
+    const checkRegexName = this.RegexForName.exec(this.ContactForm.value.name)
+    const checkRegexSurname = this.RegexForSurName.exec(this.ContactForm.value.surname)
+    const checkRegexPhone = this.RegexForPhone.exec(this.ContactForm.value.phone)
+    const checkRegexDateOfBirth = this.RegexForDateOfBirth.exec(this.ContactForm.value.dateOfBirth)
+    const checkRegexEmail = this.RegexForEmail.exec(this.ContactForm.value.email)
+    const checkRegexAddress = this.RegexForAddress.exec(this.ContactForm.value.address)
+    if (checkRegexName != null && checkRegexSurname != null && checkRegexPhone != null && checkRegexDateOfBirth != null && checkRegexEmail != null && checkRegexAddress != null && this.ContactForm.value.country != null) {
       const newContact = {
         name: this.ContactForm.value.name,
         surname: this.ContactForm.value.surname,
         phone: this.ContactForm.value.phone,
-        dataOfBirth: this.ContactForm.value.dataOfBirth,
+        dateOfBirth: this.ContactForm.value.dateOfBirth,
         email: this.ContactForm.value.email,
         address: this.ContactForm.value.address,
         country: this.ContactForm.value.country,
@@ -81,11 +93,11 @@ export class MainComponent implements OnInit {
       this.success('Successfully added')
     }
     else {
-      this.error('Please , fill your fields')
+      this.error('Please , fill your fields correctly')
     }
 
   }
-  getInfo(item, i): void {
+  getInfo(item): void {
     this.currentContact = item
     this.isShowInfo = true
   }
@@ -100,12 +112,12 @@ export class MainComponent implements OnInit {
   }
   initEditForm(): void {
     this.editForm = this.FormBuilder.group({
-      name: [null, Validators.pattern(/[^0-9@.\/><*{\[\]?^+]+/)],
-      surname: [null, Validators.pattern(/[^0-9@.\/><*{\[\]?^+]+/)],
-      phone: [null, Validators.pattern(/[^a-zA-Z@.\/><*{\[\]?^+]+/)],
-      dataOfBirth: [null, Validators.pattern(/[^a-zA-Z\/><*{\[\]?^+]+/)],
-      email: [null, Validators.pattern(/[a-zA-Z0-9\.]{4,}@\w{3,}.\w{3,}/)],
-      address: [null, Validators.pattern(/[^0-9@.\/><*{\[\]?^+]+/)],
+      name: [null, Validators.required],
+      surname: [null, Validators.required],
+      phone: [null, Validators.required],
+      dateOfBirth: [null, Validators.required],
+      email: [null, Validators.required],
+      address: [null, Validators.required],
       country: [null, Validators.required]
     })
   }
@@ -116,7 +128,7 @@ export class MainComponent implements OnInit {
       name: item.name,
       surname: item.surname,
       phone: item.phone,
-      dataOfBirth: item.dataOfBirth,
+      dateOfBirth: item.dateOfBirth,
       email: item.email,
       address: item.address,
       country: item.country,
@@ -126,12 +138,18 @@ export class MainComponent implements OnInit {
     this.isShowEdit = false
   }
   saveEdit(): void {
-    if (this.editForm.value.name != '' && this.editForm.value.surname != '' && this.editForm.value.phone != '' && this.editForm.value.dataOfBirth != '' && this.editForm.value.email != '' && this.editForm.value.address != '' && this.editForm.value.country != null) {
+    const checkRegexName = this.RegexForName.exec(this.editForm.value.name)
+    const checkRegexSurname = this.RegexForSurName.exec(this.editForm.value.surname)
+    const checkRegexPhone = this.RegexForPhone.exec(this.editForm.value.phone)
+    const checkRegexDateOfBirth = this.RegexForDateOfBirth.exec(this.editForm.value.dateOfBirth)
+    const checkRegexEmail = this.RegexForEmail.exec(this.editForm.value.email)
+    const checkRegexAddress = this.RegexForAddress.exec(this.editForm.value.address)
+    if (checkRegexName != null && checkRegexSurname != null && checkRegexPhone != null && checkRegexDateOfBirth != null && checkRegexEmail != null && checkRegexAddress != null && this.editForm.value.country != null) {
       const editContact = {
         name: this.editForm.value.name,
         surname: this.editForm.value.surname,
         phone: this.editForm.value.phone,
-        dataOfBirth: this.editForm.value.dataOfBirth,
+        dateOfBirth: this.editForm.value.dateOfBirth,
         email: this.editForm.value.email,
         address: this.editForm.value.address,
         country: this.editForm.value.country,
@@ -145,31 +163,45 @@ export class MainComponent implements OnInit {
       this.success('Successfully edited')
     }
     else {
-      this.error('Please , fill your fields')
+      this.error('Please , fill your fields correctly')
     }
 
   }
   searchItem(): void {
+    let getValues = []
+    this.getItem = this.getItem.toLowerCase()
+    for (const iterator of this.actionContacts) {
+      for (const key in iterator) {
+        getValues.push(iterator[key])
+      }
+    }
     let deleteSpaces = this.getItem.replace(/\s{2,}/g, "")
+    getValues = getValues.map(value => {
+      return value.toLowerCase()
+    })
     this.actionContacts.filter(item => {
-      if (item.phone == deleteSpaces || item.name == deleteSpaces || item.surname == deleteSpaces || item.email == deleteSpaces) {
-        if(!this.filterData.includes(item)){
-          this.filterData.push(item)
-        }
-        this.switchSearch = false
-        this.getItem = ''
+      if (getValues.includes(this.getItem)) {
+        for (const key in item) {
+          if (item[key].toLowerCase() == deleteSpaces) {
+            this.filterData.push(item)
+            this.switchSearch = false
+          } 
+        } 
       }
     })
-
+    if(!getValues.includes(this.getItem)){
+      this.error('No such value')
+    }
+    this.getItem = ''
   }
-  editContactSearch(item, index): void {
+  editContactSearch(item): void {
     this.infoIndex = this.actionContacts.indexOf(item)
     this.isShowEdit = true
     this.editForm.patchValue({
       name: item.name,
       surname: item.surname,
       phone: item.phone,
-      dataOfBirth: item.dataOfBirth,
+      dateOfBirth: item.dateOfBirth,
       email: item.email,
       address: item.address,
       country: item.country,
@@ -182,7 +214,7 @@ export class MainComponent implements OnInit {
         name: this.editForm.value.name,
         surname: this.editForm.value.surname,
         phone: this.editForm.value.phone,
-        dataOfBirth: this.editForm.value.dataOfBirth,
+        dateOfBirth: this.editForm.value.dateOfBirth,
         email: this.editForm.value.email,
         address: this.editForm.value.address,
         country: this.editForm.value.country,

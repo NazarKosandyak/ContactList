@@ -2,7 +2,7 @@ export interface IContact {
     name:string,
     surname:string,
     phone:string|number,
-    dataOfBirth:string,
+    dateOfBirth:string,
     email:string,
     address:string,
     country:string
