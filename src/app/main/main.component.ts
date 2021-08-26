@@ -136,6 +136,7 @@ export class MainComponent implements OnInit {
   }
   closeEdit(): void {
     this.isShowEdit = false
+    this.editForm.reset()
   }
   saveEdit(): void {
     const checkRegexName = this.RegexForName.exec(this.editForm.value.name)
